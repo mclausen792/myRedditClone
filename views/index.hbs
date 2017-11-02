@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>redditclone</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+    <body>
+  <header>
+    <h2> MyFavoriteRecipe!</h2>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/recipes">Recipes</a></li>
+  </ul>
+  </header>
+<section class="myLinks">
+  {{#each links}}
+  <form class="ratings" method="post" action="/{{id}}?_method=PUT">
+    <input type="number" value="3" min="1" max="5"></input>
+<a href="{{links}}"><p> {{title}}</p></a>
+</form>
+  {{/each}}
+</section>
+
+<footer>
+  <small> Reddit Clone</small>
+</footer>
+
+  </body>
+</html>
