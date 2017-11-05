@@ -16,42 +16,52 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 app.use(methodOverride('_method'))
 
-// app.get('/', function(req, res) {
-//   res.render('index')
-// })
-
 app.get('/recipes', function(req, res) {
   res.render('recipes')
 })
 
 app.get('/', function(req, res) {
   queries.getLinks()
+
     .then(links => {
-      // res.send(links)
+      console.log(links);
       res.render('index', {
         links: links
       })
     })
 })
 
-app.put('/:id', function(req, res) {
+app.put('/add/:id', function(req, res) {
   const vote = req.body.vote
   const id = Number(req.params.id)
   queries.upVote(id, vote)
     .then(vote => {
-      res.render('index')
+      if (vote < 6) {
+        res.redirect('/')
+      }
     })
 })
-app.put('/:id', function(req, res) {
+app.put('/subtract/:id', function(req, res) {
   const vote = req.body.vote
-  const id = NUmber(req.params.id)
+  const id = Number(req.params.id)
   queries.downVote(id, vote)
     .then(vote => {
-      res.render('index')
+      if (vote >= 1) {
+        res.redirect('/')
+      }
     })
 })
+app.post('/newLink', (req, res) => {
+  console.log(req.body);
+  queries.addLink(req.body)
 
-
+    .then(addedLink => {
+      res.render('index', {
+        description: 'Thanks! Now head back to the recipe page to check out some different ideas',
+        addedLink: addedLink
+      })
+    })
+})
 
 
 

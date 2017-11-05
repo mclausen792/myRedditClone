@@ -2,22 +2,28 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>{{title}}</title>
+    <title>redditclone</title>
     <link rel="stylesheet" href="/style.css">
   </head>
     <body>
   <header>
+    <h2> MyFavoriteRecipe!</h2>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/recipes">Recipes</a></li>
+      <li><a href="/">Recipes</a></li>
+      <li><a href="/recipes">New Recipe</a></li>
   </ul>
   </header>
+  <h3 id="newRecipe"> What's your favorite recipe? Share it with us!</h3>
   <section class="newlinkSection">
-    <form class="newRecipe">
-      <input id="title">Title:</input>
-      <input id="link">Link:</input>
+    <form class="newRecipe" name="addLink" method="post" action="/newLink">
+      <label>Title:</label>
+          <input type='text' name='title' value=''>
+        <label>Link:</label>
+          <input type='text' name='links' value=''>
+        <input type='hidden' name='vote' value='1'>
+        <button class='newBtn' type='submit'>Submit</button>
     </form>
-
+<p>{{description}}</p>
   </section>
 <footer>
   <small> Reddit Clone</small>

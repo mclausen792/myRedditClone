@@ -9,18 +9,29 @@
   <header>
     <h2> MyFavoriteRecipe!</h2>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/recipes">Recipes</a></li>
+      <li><a href="/">Recipes</a></li>
+      <li><a href="/recipes">New Recipe</a></li>
   </ul>
   </header>
-<section class="myLinks">
+
   {{#each links}}
-  <form class="ratings" method="post" action="/{{id}}?_method=PUT">
-    <input type="number" value="3" min="1" max="5"></input>
-<a href="{{links}}"><p> {{title}}</p></a>
-</form>
-  {{/each}}
+<section class="myLinks">
+   <form class="add" method="post" action="/add/{{id}}?_method=PUT">
+    <input type="hidden" name="vote" value="{{vote}}">
+    <button class="up">&#8593;</button>
+   </form>
+
+   <h2 class="vote">{{vote}}</h2>
+
+   <form class="subtract" method="post" action="/subtract/{{id}}?_method=PUT">
+     <input type="hidden" name="vote" value="{{vote}}">
+     <button class="down">&#8595;</button>
+   </form>
+
+  <a class="link" href="{{links}}"><p>{{title}}</p></a>
 </section>
+
+  {{/each}}
 
 <footer>
   <small> Reddit Clone</small>

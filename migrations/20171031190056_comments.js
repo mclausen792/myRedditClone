@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
       table.increments()
       table.string('name')
       table.string('comment')
-      table.integer('link_id')
+      table.integer('links_id')
     })
   ])
 };
